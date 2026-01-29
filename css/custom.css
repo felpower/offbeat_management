@@ -1,0 +1,213 @@
+/* Custom Styles for Martin Schwödiauer Website */
+
+/* Pricing Section */
+.s-pricing-section {
+    padding: 6rem 0;
+    background-color: #f8f9fa;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.pricing-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.pricing-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.pricing-card__content h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.pricing-card__price {
+    font-size: 1.8rem;
+    color: #0066cc;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.pricing-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0 0;
+}
+
+.pricing-card__list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+}
+
+.pricing-card__list li:last-child {
+    border-bottom: none;
+}
+
+/* Artist Details Section */
+.artist-details {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}
+
+.artist-bio {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+.artist-bio p {
+    margin: 0;
+}
+
+.artist-contact h5 {
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1rem;
+}
+
+.artist-contact p {
+    margin: 0;
+}
+
+/* Footer Form */
+.s-footer__form {
+    margin: 2rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.s-footer__form h4 {
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+}
+
+.form-row {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card {
+        padding: 1.5rem;
+    }
+
+    .s-pricing-section {
+        padding: 4rem 0;
+    }
+}
+
+/* Styling for Pricing Cards with Button */
+.btn--small {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+}
+
+/* Entry styling adjustments */
+.entry__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.entry__link:hover {
+    opacity: 0.8;
+}
+
+/* Thumbnail styling for consistent image display */
+.entry__thumb {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+}
+
+.entry__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Section Header for Pricing */
+#pricing .section-header {
+    margin-bottom: 3rem;
+}
+
+/* Testimonials adjustments */
+.s-testimonials__header {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Legal page styling */
+.legal-page h3 {
+    margin: 2rem 0 1rem 0;
+    font-size: 1.4rem;
+}
+
+.legal-page h4 {
+    margin: 1.5rem 0 0.8rem 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.legal-page p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.legal-page ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.legal-page ul li {
+    margin-bottom: 0.5rem;
+}
