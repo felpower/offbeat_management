@@ -1,9 +1,7 @@
 @charset "UTF-8";
 
 /* =================================================================== 
- * Hudson Main Stylesheet
- * Template Ver. 1.0.0
- * 04-03-2023
+ * Main Stylesheet
  * ------------------------------------------------------------------
  *
  * TOC:
@@ -3121,9 +3119,11 @@ td:last-child {
 }
 
 .s-header__logo img {
-    width         : var(--logo-width);
+    height        : var(--header-height);
+    width         : auto;
     margin        : 0;
     vertical-align: bottom;
+    object-fit    : contain;
 }
 
 /* --------------------------------------------------------------------
