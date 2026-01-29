@@ -296,6 +296,137 @@
     }; // end ssMoveTo
 
 
+   /* intro carousel
+    * ------------------------------------------------------ */
+    const ssIntroCarousel = function() {
+
+        const carousel = document.querySelector('.intro-carousel');
+        if (!carousel) return;
+
+        const track = carousel.querySelector('.intro-carousel__track');
+        const slides = carousel.querySelectorAll('.intro-carousel__slide');
+        const dotsContainer = carousel.querySelector('.intro-carousel__dots');
+        if (!track || slides.length === 0 || !dotsContainer) return;
+
+        const slideCount = slides.length;
+        let currentIndex = 0;
+        let autoplayTimer = null;
+        let isDragging = false;
+        let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID = null;
+
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'intro-carousel__dot' + (i === 0 ? ' is-active' : '');
+            dot.setAttribute('aria-label', 'Bild ' + (i + 1));
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('.intro-carousel__dot');
+
+        function updateDots() {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('is-active', i === currentIndex);
+            });
+        }
+
+        function updateSlidePosition(withTransition = true) {
+            if (withTransition) {
+                track.style.transition = 'transform 600ms cubic-bezier(0.33, 0.66, 0.66, 1)';
+            }
+            track.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+        }
+
+        function goToSlide(newIndex) {
+            currentIndex = newIndex;
+            updateSlidePosition(true);
+            updateDots();
+            resetAutoplay();
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slideCount;
+            updateSlidePosition(true);
+            updateDots();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+            updateSlidePosition(true);
+            updateDots();
+        }
+
+        function resetAutoplay() {
+            if (autoplayTimer) clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(nextSlide, 20000);
+        }
+
+        // Touch/Mouse events
+        function onMouseDown(e) {
+            isDragging = true;
+            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            track.style.transition = 'none';
+            if (autoplayTimer) clearInterval(autoplayTimer);
+        }
+
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            const currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            currentTranslate = prevTranslate + (currentX - startX) / carousel.offsetWidth * -100;
+            track.style.transform = 'translateX(' + currentTranslate + '%)';
+        }
+
+        function onMouseUp(e) {
+            if (!isDragging) return;
+
+            isDragging = false;
+
+            const movedBy = currentTranslate - prevTranslate;
+
+            // Threshold: 20% movement to trigger slide change
+            if (Math.abs(movedBy) > 20) {
+                if (movedBy > 0) {
+                    prevSlide();
+                } else {
+                    nextSlide();
+                }
+            } else {
+                // Snap back to current slide
+                goToSlide(currentIndex);
+            }
+
+            prevTranslate = -currentIndex * 100;
+            resetAutoplay();
+        }
+
+        // Event listeners
+        carousel.addEventListener('mousedown', onMouseDown);
+        carousel.addEventListener('mousemove', onMouseMove);
+        carousel.addEventListener('mouseup', onMouseUp);
+        carousel.addEventListener('mouseleave', onMouseUp);
+
+        carousel.addEventListener('touchstart', onMouseDown);
+        carousel.addEventListener('touchmove', onMouseMove);
+        carousel.addEventListener('touchend', onMouseUp);
+
+        // Keyboard navigation
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Initial setup
+        updateSlidePosition();
+        resetAutoplay();
+
+    }; // end ssIntroCarousel
+
+
    /* Initialize
     * ------------------------------------------------------ */
     (function ssInit() {
@@ -308,6 +439,7 @@
         ssSwiper();
         ssAlertBoxes();
         ssMoveTo();
+        ssIntroCarousel();
 
     })();
 
