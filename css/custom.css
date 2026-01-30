@@ -300,3 +300,42 @@
 .legal-page ul li {
     margin-bottom: 0.5rem;
 }
+
+/* Artist Social Media Icons */
+.artist-socials {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+.artist-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    color: #333;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.artist-socials a:hover {
+    background: #0066cc;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+}
+
+.artist-socials svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .artist-socials {
+        justify-content: center;
+    }
+}
