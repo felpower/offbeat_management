@@ -138,6 +138,24 @@
     margin-top: 1.5rem;
 }
 
+.form-group input[type="checkbox"] {
+    accent-color: #0066cc;
+    cursor: pointer;
+}
+
+.form-group label {
+    color: #555;
+}
+
+.form-group label a {
+    color: #0066cc;
+    transition: color 0.3s ease;
+}
+
+.form-group label a:hover {
+    color: #004c99;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .pricing-grid {
