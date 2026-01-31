@@ -181,6 +181,15 @@
         const testimonialsSwiper = new Swiper('.s-testimonials__slider', {
 
             slidesPerView: 1,
+            spaceBetween: 20,
+            loop: false,
+            grabCursor: true,
+            touchRatio: 1,
+            touchAngle: 45,
+            threshold: 5,
+            longSwipesRatio: 0.5,
+            resistance: true,
+            resistanceRatio: 0.85,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -427,6 +436,55 @@
     }; // end ssIntroCarousel
 
 
+   /* contact form
+    * ------------------------------------------------------ */
+    const ssContactForm = function() {
+        const form = document.getElementById('contactForm');
+        const submitBtn = form?.querySelector('button[type="submit"]');
+        const msgSuccess = document.getElementById('message-success');
+        const msgWarning = document.getElementById('message-warning');
+
+        if (!form) return;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const originalBtnText = submitBtn.textContent;
+
+            // Disable button and show loading
+            submitBtn.textContent = 'Wird gesendet...';
+            submitBtn.disabled = true;
+            msgSuccess.style.display = 'none';
+            msgWarning.style.display = 'none';
+
+            // Send form data
+            fetch('contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim() === 'OK') {
+                    msgSuccess.style.display = 'block';
+                    form.reset();
+                } else {
+                    msgWarning.textContent = data;
+                    msgWarning.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                msgWarning.textContent = 'Es gab einen Fehler. Bitte versuchen Sie es erneut.';
+                msgWarning.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            });
+        });
+    };
+
+
    /* Initialize
     * ------------------------------------------------------ */
     (function ssInit() {
@@ -440,6 +498,7 @@
         ssAlertBoxes();
         ssMoveTo();
         ssIntroCarousel();
+        ssContactForm();
 
     })();
 

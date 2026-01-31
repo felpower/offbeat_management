@@ -538,41 +538,45 @@
             <div class="row s-footer__form">
                 <div class="column xl-12">
                     <h4>Kontaktformular</h4>
-                    <form name="contact" method="POST" netlify>
+                    <form id="contactForm" name="contact" method="POST" action="contact.php">
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Ihr Name" required>
+                                <input type="text" name="contactName" id="contactName" placeholder="Ihr Name" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Ihre E-Mail" required>
+                                <input type="email" name="contactEmail" id="contactEmail" placeholder="Ihre E-Mail" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <input type="text" name="subject" placeholder="Betreff" required>
+                                <input type="text" name="contactSubject" id="contactSubject" placeholder="Betreff" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <textarea name="message" placeholder="Ihre Nachricht" rows="5" required></textarea>
+                                <textarea name="contactMessage" id="contactMessage" placeholder="Ihre Nachricht" rows="5" required></textarea>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn--primary">Senden</button>
+                        <div class="form-button-row">
+                            <button type="submit" class="btn btn--primary">Senden</button>
+                        </div>
+                        <div id="message-warning" style="display: none; color: #dc3545; margin-top: 1rem;"></div>
+                        <div id="message-success" style="display: none; color: #28a745; margin-top: 1rem;">Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.</div>
                     </form>
                 </div>
             </div>
 
             <div class="row s-footer__buttons">
                
-                <div class="column xl-6 tab-12">
+                <!-- <div class="column xl-6 tab-12">
                     <a href="mailto:martin@offbeat-management.at" class="btn btn--primary btn--large u-fullwidth">Nachricht schreiben</a>
-                </div>
+                </div> -->
           
-                <div class="column xl-6 tab-12">                    
+                <!-- <div class="column xl-6 tab-12">                    
                     <a href="https://yoursite.com/pressemappe.pdf" class="btn btn--stroke btn--large u-fullwidth">Pressemappe Download</a>
-                </div>
+                </div> -->
             
             </div> <!-- end section-footer__buttons -->              
             
